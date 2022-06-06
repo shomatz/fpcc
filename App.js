@@ -106,13 +106,14 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 //import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import { PROVIDER_GOOGLE } from 'react-native-maps';
 import MapView from 'react-native-map-clustering';
-import {Marker} from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 import Autocomplete from 'react-native-autocomplete-input';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
-import type {Node} from 'react';
-import {useRef} from 'react';
+import type { Node } from 'react';
+import { useRef } from 'react';
 //import {Button} from 'react-native';
 
 import {
@@ -135,12 +136,13 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Button, Menu, Divider, Provider } from 'react-native-paper';
 import ModalDropdown from 'react-native-modal-dropdown';
-
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs();
 const Drawer = createDrawerNavigator();
 
 const Stack = createNativeStackNavigator();
@@ -150,7 +152,7 @@ const data = ['dropdown1', 'drop down 2', 'a drop down'];
 const AuthStack = () => {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="HomeScreen" component={HomeScreen} />
+      <Drawer.Screen name="Main2" component={Main} />
     </Drawer.Navigator>
   );
 };
@@ -159,20 +161,29 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
         <Stack.Screen
           name="Main"
-          component={Main}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="HomeScreen" component={HomeScreen}  />
+          options={{ headerShown: false }}
+        >
+          {
+            () => (<AuthStack />)
+          }
+
+        </Stack.Screen>
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="HomeScreen2" component={HomeScreen2} />
+        <Stack.Screen name="HomeScreen7" component={HomeScreen7} />
+        <Stack.Screen name="HomeScreen8" component={HomeScreen8} />
         {/* <AuthStack /> */}
         {/* <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} /> */}
       </Stack.Navigator>
+
     </NavigationContainer>
   );
 };
 
-const Main = ({navigation}) => {
+const Main = ({ navigation }) => {
   return (
     <SafeAreaView
       style={{
@@ -182,13 +193,76 @@ const Main = ({navigation}) => {
         backgroundColor: '#fff',
       }}>
       <View style={{}}>
-        <Text style={{fontSize: 30, fontWeight: 'bold', color: '#20315f'}}>
+        <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#20315f' }}>
           GAMEON
         </Text>
       </View>
 
       <TouchableOpacity
         onPress={() => navigation.navigate('HomeScreen')}
+        style={{
+          backgroundColor: '#AD40AF',
+          padding: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          color: '#fff',
+          width: '90%',
+          justifyContent: 'space-between',
+          marginBottom: 50,
+        }}>
+        <Text
+          style={{
+            color: '#fff',
+            fontWeight: 'bold',
+          }}>
+          Let's Begin
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('HomeScreen2')}
+        style={{
+          backgroundColor: '#AD40AF',
+          padding: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          color: '#fff',
+          width: '90%',
+          justifyContent: 'space-between',
+          marginBottom: 50,
+        }}>
+        <Text
+          style={{
+            color: '#fff',
+            fontWeight: 'bold',
+          }}>
+          Let's Begin
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('HomeScreen7')}
+        style={{
+          backgroundColor: '#AD40AF',
+          padding: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          color: '#fff',
+          width: '90%',
+          justifyContent: 'space-between',
+          marginBottom: 50,
+        }}>
+        <Text
+          style={{
+            color: '#fff',
+            fontWeight: 'bold',
+          }}>
+          Let's Begin
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('HomeScreen8')}
         style={{
           backgroundColor: '#AD40AF',
           padding: 20,
@@ -220,7 +294,7 @@ const Home = () => {
         alignItems: 'center',
         backgroundColor: '#fff',
       }}>
-      <Text style={{fontSize: 30, fontWeight: 'bold', color: '#20315f'}}>
+      <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#20315f' }}>
         Home
       </Text>
     </View>
@@ -291,14 +365,14 @@ const HomeScreen = () => {
         alignItems: 'center',
         backgroundColor: '#fff',
       }}>
-      <ScrollView style={{padding: 20}}>
+      <ScrollView style={{ padding: 20 }}>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
             marginBottom: 20,
           }}>
-          <Text style={{fontSize: 18}}>Hello John Doe</Text>
+          <Text style={{ fontSize: 18 }}>Hello John Doe</Text>
           {/* <ImageBackground source={require()}></ImageBackground> */}
         </View>
 
@@ -313,8 +387,8 @@ const HomeScreen = () => {
           }}>
           {/* <TextInput placeholder="Search" /> */}
 
-          <Autocomplete 
-          data = {data}/>
+          <Autocomplete
+            data={data} />
         </View>
 
         <View
@@ -323,9 +397,9 @@ const HomeScreen = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <Text style={{fontSize: 18}}>Upcoming Games</Text>
-          <TouchableOpacity onPress={() => {}}>
-            <Text style={{color: '#0aada8'}}>See all</Text>
+          <Text style={{ fontSize: 18 }}>Upcoming Games</Text>
+          <TouchableOpacity onPress={() => { }}>
+            <Text style={{ color: '#0aada8' }}>See all</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -361,16 +435,16 @@ const HomeScreen8 = () => {
           longitudeDelta: 0.0121,
         }}></MapView> */}
 
-      <MapView initialRegion={INITIAL_REGION} style={styles.map}>
-        <Marker coordinate={{latitude: 52.4, longitude: 18.7}} />
-        <Marker coordinate={{latitude: 52.1, longitude: 18.4}} />
-        <Marker coordinate={{latitude: 52.6, longitude: 18.3}} />
-        <Marker coordinate={{latitude: 51.6, longitude: 18.0}} />
-        <Marker coordinate={{latitude: 53.1, longitude: 18.8}} />
-        <Marker coordinate={{latitude: 52.9, longitude: 19.4}} />
-        <Marker coordinate={{latitude: 52.2, longitude: 21}} />
-        <Marker coordinate={{latitude: 52.4, longitude: 21}} />
-        <Marker coordinate={{latitude: 51.8, longitude: 20}} />
+      <MapView initialRegion={INITIAL_REGION} style={styles.map} provider={PROVIDER_GOOGLE}>
+        <Marker coordinate={{ latitude: 52.4, longitude: 18.7 }} />
+        <Marker coordinate={{ latitude: 52.1, longitude: 18.4 }} />
+        <Marker coordinate={{ latitude: 52.6, longitude: 18.3 }} />
+        <Marker coordinate={{ latitude: 51.6, longitude: 18.0 }} />
+        <Marker coordinate={{ latitude: 53.1, longitude: 18.8 }} />
+        <Marker coordinate={{ latitude: 52.9, longitude: 19.4 }} />
+        <Marker coordinate={{ latitude: 52.2, longitude: 21 }} />
+        <Marker coordinate={{ latitude: 52.4, longitude: 21 }} />
+        <Marker coordinate={{ latitude: 51.8, longitude: 20 }} />
       </MapView>
 
       <View style={styles.searchBox}>
@@ -381,41 +455,41 @@ const HomeScreen8 = () => {
 
         {/* <ModalDropdown options={['option 1', 'option 2']}/> */}
 
-          
 
-         
+
+
       </View>
       <Provider>
-      <View
-        style={{
-          //paddingTop: 40,
-          flexDirection: 'row',
-         // backgroundColor:'red'
-
-          //justifyContent: 'center',
-        }}>
-        <Menu
-
-style={{
-  flexDirection: 'row',
-  backgroundColor:'black',
-  position:'absolute',
-  top: 20
-  //justifyContent: 'center',
-}}
-          visible={visible}
-          onDismiss={closeMenu}
-          anchor={<Button style={{
+        <View
+          style={{
+            //paddingTop: 40,
             flexDirection: 'row',
-            backgroundColor:'green',
-            top: 12
+            // backgroundColor:'red'
+
             //justifyContent: 'center',
-          }} onPress={openMenu}>Show menu</Button>}>
-          <Menu.Item onPress={() => {}} title="Item 1" />
-          <Menu.Item onPress={() => {}} title="Item 2" />
-          
-        </Menu>
-      </View>
+          }}>
+          <Menu
+
+            style={{
+              flexDirection: 'row',
+              backgroundColor: 'black',
+              position: 'absolute',
+              top: 20
+              //justifyContent: 'center',
+            }}
+            visible={visible}
+            onDismiss={closeMenu}
+            anchor={<Button style={{
+              flexDirection: 'row',
+              backgroundColor: 'green',
+              top: 12
+              //justifyContent: 'center',
+            }} onPress={openMenu}>Show menu</Button>}>
+            <Menu.Item onPress={() => { }} title="Item 1" />
+            <Menu.Item onPress={() => { }} title="Item 2" />
+
+          </Menu>
+        </View>
       </Provider>
 
     </View>
@@ -438,7 +512,7 @@ const HomeScreen7 = () => {
 
   return (
     <>
-      <MapView ref={mapRef} initialRegion={INITIAL_REGION} style={{flex: 1}} />
+      <MapView ref={mapRef} initialRegion={INITIAL_REGION} style={{ flex: 1 }} />
       <Button onPress={animateToRegion} title="Animate" />
     </>
   );
@@ -464,8 +538,8 @@ const styles = StyleSheet.create({
     //padding: 5,
     //shadowColor: '#ccc',
     height: '4%',
-   // marginLeft: 249,
-    shadowOffset: {width: 0, height: 3},
+    // marginLeft: 249,
+    shadowOffset: { width: 0, height: 3 },
     //shadowOpacity: 0.5,
     // shadowRadius: 5,
     //elevation: 10,
