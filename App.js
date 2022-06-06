@@ -112,7 +112,6 @@ import { Marker } from 'react-native-maps';
 import Autocomplete from 'react-native-autocomplete-input';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
-import type { Node } from 'react';
 import { useRef } from 'react';
 //import {Button} from 'react-native';
 
@@ -152,7 +151,10 @@ const data = ['dropdown1', 'drop down 2', 'a drop down'];
 const AuthStack = () => {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Main2" component={Main} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="HomeScreen2" component={HomeScreen2} />
+      <Stack.Screen name="HomeScreen7" component={HomeScreen7} />
+      <Stack.Screen name="HomeScreen8" component={HomeScreen8} />
     </Drawer.Navigator>
   );
 };
@@ -161,20 +163,13 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-
-        <Stack.Screen
-          name="Main"
-          options={{ headerShown: false }}
-        >
+        <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
+        <Stack.Screen name="AuthStack">
           {
             () => (<AuthStack />)
           }
-
         </Stack.Screen>
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="HomeScreen2" component={HomeScreen2} />
-        <Stack.Screen name="HomeScreen7" component={HomeScreen7} />
-        <Stack.Screen name="HomeScreen8" component={HomeScreen8} />
+
         {/* <AuthStack /> */}
         {/* <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} /> */}
       </Stack.Navigator>
@@ -199,7 +194,7 @@ const Main = ({ navigation }) => {
       </View>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate('HomeScreen')}
+        onPress={() => navigation.navigate('AuthStack')}
         style={{
           backgroundColor: '#AD40AF',
           padding: 20,
@@ -219,68 +214,6 @@ const Main = ({ navigation }) => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate('HomeScreen2')}
-        style={{
-          backgroundColor: '#AD40AF',
-          padding: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          color: '#fff',
-          width: '90%',
-          justifyContent: 'space-between',
-          marginBottom: 50,
-        }}>
-        <Text
-          style={{
-            color: '#fff',
-            fontWeight: 'bold',
-          }}>
-          Let's Begin
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate('HomeScreen7')}
-        style={{
-          backgroundColor: '#AD40AF',
-          padding: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          color: '#fff',
-          width: '90%',
-          justifyContent: 'space-between',
-          marginBottom: 50,
-        }}>
-        <Text
-          style={{
-            color: '#fff',
-            fontWeight: 'bold',
-          }}>
-          Let's Begin
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate('HomeScreen8')}
-        style={{
-          backgroundColor: '#AD40AF',
-          padding: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          color: '#fff',
-          width: '90%',
-          justifyContent: 'space-between',
-          marginBottom: 50,
-        }}>
-        <Text
-          style={{
-            color: '#fff',
-            fontWeight: 'bold',
-          }}>
-          Let's Begin
-        </Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };
